@@ -73,7 +73,7 @@ python models/train_twitter.py --dataset_dir data/tweet_sent --gpu --model_path 
 python models/train_twitter.py --dataset_dir data/tweet_sent --gpu --model_path data/models/tweet/random_lstm/lstm_1 --epoch 100 --model lstm --embedding_dim 200 --batch_size 16 --lr 0.001 --dropout 0.05 --hidden_lstm 100 --num_layers 1 --hidden_sizes 200 100 --labels 3 --random_seed --init_only
 ```
 
-### Generating Explanations
+### saliency_gen
 We serialize the saliencies produced by the different methods to avoid recomputing them for each evaluation measure.
 Here we provide an example with one model and dataset, the rest are analagous.
 ```
@@ -83,7 +83,7 @@ python saliency_gen/interpret_lime.py --model_path data/models/tweet/transformer
 python saliency_gen/generate_random_sal.py --saliency_path data/saliency/imdb/transformer/trans_1_lime --output_path data/saliency/imdb/transformer/trans_1_rand
 ```
 
-### Evaluating explanations
+### saliency_eval
 Here we give an example how to evaluate a particular explainability technique for a particular dataset and model.
 
 ```
