@@ -19,4 +19,9 @@ performance and the agreement of its rationales with human ones. Overall, we
 find that the gradient-based explanations perform best across tasks and model 
 architectures, and we present further insights into the properties of the 
 reviewed explainability techniques.
- 
+
+## Code Base
+
+### preprocessing
+The SNLI dataset is used as is. For the IMDB and the TSE datasets, 
+we have to make additional splits with the scripts in the package. 
