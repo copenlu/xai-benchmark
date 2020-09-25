@@ -74,5 +74,13 @@ python models/train_twitter.py --dataset_dir data/tweet_sent --gpu --model_path 
 ```
 
 ### Generating Explanations
+We serialize the saliencies produced by the different methods to avoid recomputing them for each evaluation measure.
+Here we provide an example with one model and dataset, the rest are analagous.
+```
+python saliency_gen/interpret_grads_occ.py --models_dir data/models/tweet/cnn/cnn --dataset_dir data/tweet_sent --output_dir data/saliency/tweet/cnn/ --saliency guided sal inputx occlusion --model cnn --gpu --dataset tweet
+python saliency_gen/interpret_shap.py --model_path data/models/tweet/transformer/trans_1 --output_dir data/saliency/tweet/transformer/ --model transformer --dataset tweet --gpu --no_time --dataset_dir data/tweet_sent --labels 3
+python saliency_gen/interpret_lime.py --model_path data/models/tweet/transformer/trans_1 --output_dir data/saliency/tweet/transformer/ --model trans --dataset tweet --gpu --dataset_dir data/tweet_sent --labels 3
+python saliency_gen/generate_random_sal.py --saliency_path data/saliency/imdb/transformer/trans_1_lime --output_path data/saliency/imdb/transformer/trans_1_rand
+```
 
 ### Evaluating explanations
