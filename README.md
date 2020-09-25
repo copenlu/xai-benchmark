@@ -84,3 +84,18 @@ python saliency_gen/generate_random_sal.py --saliency_path data/saliency/imdb/tr
 ```
 
 ### Evaluating explanations
+Here we give an example how to evaluate a particular explainability technique for a particular dataset and model.
+
+```
+python saliency_eval/human_agreement.py --saliencies shap lime --dataset_dir data/tweet_sent --dataset tweet --saliency_path data/saliency/tweet/lstm/lstm_1 data/saliency/tweet/lstm/lstm_2
+
+python saliency_eval/faithfulness.py --saliency shap --test_saliency_dir data/saliency/snli/cnn --models_dir data/models/snli/cnn/ --dataset snli --dataset_dir data/e-SNLI/dataset/ --model cnn
+
+saliency_eval/confidence.py  --saliency_dir data/saliency/tweet/lstm/ --models_dir data/models/tweet/lstm/ --saliency shap lime occlusion_none sal_mean sal_l2 inputx_mean inputx_l2 guided_mean guided_l2 --upsample up
+
+python saliency_eval/consistency_precompute.py --model_p not --dataset snli --dataset_dir data/e-SNLI/dataset/ --model cnn --model_dir_trained data/models/snli/cnn/  --model_dir_random data/models/snli/cnn/ --gpu
+python saliency_eval/consistency_rats.py --saliencies shap lime occlusion_none sal_mean sal_l2 inputx_mean inputx_l2 guided_mean guided_l2 --dataset snli --dataset_dir data/e-SNLI/dataset/ --model cnn --model_dir_trained data/models/snli/cnn/  --model_dir_random data/models/snli/random_cnn/ --saliency_dir_trained data/saliency/snli/cnn --saliency_dir_random data/saliency/snli/random_cnn --gpu
+
+python saliency_eval/consist_data_sample_instance_pairs.py --dataset snli --dataset_dir data/e-SNLI/dataset/
+python saliency_eval/consist_data.py --saliencies rand shap lime occlusion_none sal_mean sal_l2 inputx_mean inputx_l2 guided_mean guided_l2 --dataset snli --dataset_dir data/e-SNLI/dataset --model cnn --model_dir_trained data/models/snli/cnn/  --model_dir_random data/models/snli/random_cnn/ --saliency_dir_trained data/saliency/snli/cnn --saliency_dir_random data/saliency/snli/random_cnn --gpu
+```
